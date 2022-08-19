@@ -12,14 +12,15 @@ class TabbarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        setupTabbarItem()
+        setupTabBarLayout()
     }
     
     private func setupTabBarLayout() {
         // tabbar 아이템의 틴트 컬러 변경
         tabBar.tintColor = .white
         
-        tabBar.barTintColor = .black
+        tabBar.barTintColor = .lightGray
         
     }
     
@@ -29,13 +30,13 @@ class TabbarController: UITabBarController {
         // photo Tab
         let mainViewController = MainViewController()
         mainViewController.tabBarItem = UITabBarItem(
-            title: "",
-            image: UIImage(systemName: "square.and.pencil.circle"),
-            selectedImage: UIImage(systemName: "square.and.pencil.circle.fill")
+            title: "Main",
+            image: UIImage(systemName: "pencil.circle"),
+            selectedImage: UIImage(systemName: "pencil.circle.fill")
         )
         
         viewControllers = [
-            mainViewController
+            UINavigationController(rootViewController: mainViewController) 
         ]
     }
 }

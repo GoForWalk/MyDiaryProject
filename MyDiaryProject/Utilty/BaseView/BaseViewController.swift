@@ -14,6 +14,7 @@ class BaseViewController: UIViewController {
 
         layoutConstraint()
         configure()
+        setAction()
     }
     
     func configure() {
@@ -24,5 +25,8 @@ class BaseViewController: UIViewController {
         
     }
     
+    func setAction() {
+        
+    }
     
 }
