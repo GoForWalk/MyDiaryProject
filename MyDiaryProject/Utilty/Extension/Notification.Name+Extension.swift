@@ -8,5 +8,6 @@
 import UIKit
 
 extension Notification.Name {
+    static let imagePick = Notification.Name(rawValue: "ImagePick")
 
 }

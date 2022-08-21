@@ -9,6 +9,8 @@ import UIKit
 
 class BaseViewVC: UIView {
     
+    var subviewList: [UIView] = []
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
@@ -26,5 +28,7 @@ class BaseViewVC: UIView {
     func layoutConstraint() {
         
     }
+    
+    
     
 }

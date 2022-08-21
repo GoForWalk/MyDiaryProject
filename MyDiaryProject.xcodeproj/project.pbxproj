@@ -25,6 +25,15 @@
 		CFA8ACEE28AFF93000F38CF0 /* ApiKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA8ACED28AFF93000F38CF0 /* ApiKey.swift */; };
 		CFA8ACF028AFFD9D00F38CF0 /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA8ACEF28AFFD9D00F38CF0 /* KeyboardViewController.swift */; };
 		CFA8ACF328AFFF8700F38CF0 /* Notification.Name+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA8ACF228AFFF8700F38CF0 /* Notification.Name+Extension.swift */; };
+		CFA8ACF628B12CD300F38CF0 /* ImagePickViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA8ACF528B12CD300F38CF0 /* ImagePickViewController.swift */; };
+		CFA8ACF828B12D2400F38CF0 /* ImagePickViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA8ACF728B12D2400F38CF0 /* ImagePickViewVC.swift */; };
+		CFA8ACFA28B1348200F38CF0 /* UnsplashAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA8ACF928B1348200F38CF0 /* UnsplashAPIManager.swift */; };
+		CFA8ACFC28B140E500F38CF0 /* ImagePickCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA8ACFB28B140E500F38CF0 /* ImagePickCollectionViewCell.swift */; };
+		CFA8ACFE28B1472200F38CF0 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA8ACFD28B1472200F38CF0 /* BaseCollectionViewCell.swift */; };
+		CFA8AD0128B1531400F38CF0 /* UnsplashData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA8AD0028B1531400F38CF0 /* UnsplashData.swift */; };
+		CFA8AD0428B153C700F38CF0 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA8AD0328B153C700F38CF0 /* Endpoint.swift */; };
+		CFA8AD0628B15B5200F38CF0 /* ReuseableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA8AD0528B15B5200F38CF0 /* ReuseableProtocol.swift */; };
+		CFA8AD0928B1D31700F38CF0 /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = CFA8AD0828B1D31700F38CF0 /* JGProgressHUD */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +53,14 @@
 		CFA8ACED28AFF93000F38CF0 /* ApiKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiKey.swift; sourceTree = "<group>"; };
 		CFA8ACEF28AFFD9D00F38CF0 /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
 		CFA8ACF228AFFF8700F38CF0 /* Notification.Name+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification.Name+Extension.swift"; sourceTree = "<group>"; };
+		CFA8ACF528B12CD300F38CF0 /* ImagePickViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickViewController.swift; sourceTree = "<group>"; };
+		CFA8ACF728B12D2400F38CF0 /* ImagePickViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickViewVC.swift; sourceTree = "<group>"; };
+		CFA8ACF928B1348200F38CF0 /* UnsplashAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashAPIManager.swift; sourceTree = "<group>"; };
+		CFA8ACFB28B140E500F38CF0 /* ImagePickCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickCollectionViewCell.swift; sourceTree = "<group>"; };
+		CFA8ACFD28B1472200F38CF0 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
+		CFA8AD0028B1531400F38CF0 /* UnsplashData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashData.swift; sourceTree = "<group>"; };
+		CFA8AD0328B153C700F38CF0 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		CFA8AD0528B15B5200F38CF0 /* ReuseableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseableProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +72,7 @@
 				CFA8ACCE28AFA06D00F38CF0 /* Kingfisher in Frameworks */,
 				CFA8ACD428AFA16400F38CF0 /* SwiftyJSON in Frameworks */,
 				CFA8ACCB28AFA05800F38CF0 /* SnapKit in Frameworks */,
+				CFA8AD0928B1D31700F38CF0 /* JGProgressHUD in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +99,7 @@
 		CFA8ACB428AF9FB300F38CF0 /* MyDiaryProject */ = {
 			isa = PBXGroup;
 			children = (
+				CFA8ACFF28B1530300F38CF0 /* Model */,
 				CFA8ACEA28AFCBF000F38CF0 /* APIKeys */,
 				CFA8ACDA28AFA40600F38CF0 /* Views */,
 				CFA8ACD928AFA3E700F38CF0 /* Protocols */,
@@ -108,6 +127,8 @@
 		CFA8ACD828AFA3C500F38CF0 /* APIManager */ = {
 			isa = PBXGroup;
 			children = (
+				CFA8ACF928B1348200F38CF0 /* UnsplashAPIManager.swift */,
+				CFA8AD0328B153C700F38CF0 /* Endpoint.swift */,
 			);
 			path = APIManager;
 			sourceTree = "<group>";
@@ -115,6 +136,7 @@
 		CFA8ACD928AFA3E700F38CF0 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				CFA8AD0528B15B5200F38CF0 /* ReuseableProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -123,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				CFA8ACDC28AFACEB00F38CF0 /* TabBarController.swift */,
+				CFA8ACF428B12CB300F38CF0 /* ImagePick */,
 				CFA8ACDB28AFA41900F38CF0 /* Main */,
 			);
 			path = Views;
@@ -151,6 +174,7 @@
 				CFA8ACDE28AFB3EA00F38CF0 /* BaseViewController.swift */,
 				CFA8ACE228AFC54100F38CF0 /* BaseViewVC.swift */,
 				CFA8ACEF28AFFD9D00F38CF0 /* KeyboardViewController.swift */,
+				CFA8ACFD28B1472200F38CF0 /* BaseCollectionViewCell.swift */,
 			);
 			path = BaseView;
 			sourceTree = "<group>";
@@ -169,6 +193,24 @@
 				CFA8ACF228AFFF8700F38CF0 /* Notification.Name+Extension.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		CFA8ACF428B12CB300F38CF0 /* ImagePick */ = {
+			isa = PBXGroup;
+			children = (
+				CFA8ACF528B12CD300F38CF0 /* ImagePickViewController.swift */,
+				CFA8ACF728B12D2400F38CF0 /* ImagePickViewVC.swift */,
+				CFA8ACFB28B140E500F38CF0 /* ImagePickCollectionViewCell.swift */,
+			);
+			path = ImagePick;
+			sourceTree = "<group>";
+		};
+		CFA8ACFF28B1530300F38CF0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CFA8AD0028B1531400F38CF0 /* UnsplashData.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -192,6 +234,7 @@
 				CFA8ACCD28AFA06D00F38CF0 /* Kingfisher */,
 				CFA8ACD028AFA08200F38CF0 /* Alamofire */,
 				CFA8ACD328AFA16400F38CF0 /* SwiftyJSON */,
+				CFA8AD0828B1D31700F38CF0 /* JGProgressHUD */,
 			);
 			productName = MyDiaryProject;
 			productReference = CFA8ACB228AF9FB300F38CF0 /* MyDiaryProject.app */;
@@ -226,6 +269,7 @@
 				CFA8ACCC28AFA06D00F38CF0 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				CFA8ACCF28AFA08200F38CF0 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				CFA8ACD228AFA16400F38CF0 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
+				CFA8AD0728B1D31700F38CF0 /* XCRemoteSwiftPackageReference "JGProgressHUD" */,
 			);
 			productRefGroup = CFA8ACB328AF9FB300F38CF0 /* Products */;
 			projectDirPath = "";
@@ -254,16 +298,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CFA8AD0128B1531400F38CF0 /* UnsplashData.swift in Sources */,
 				CFA8ACE528AFC88F00F38CF0 /* MainViewVC.swift in Sources */,
+				CFA8ACF628B12CD300F38CF0 /* ImagePickViewController.swift in Sources */,
+				CFA8ACFA28B1348200F38CF0 /* UnsplashAPIManager.swift in Sources */,
+				CFA8AD0628B15B5200F38CF0 /* ReuseableProtocol.swift in Sources */,
 				CFA8ACF028AFFD9D00F38CF0 /* KeyboardViewController.swift in Sources */,
 				CFA8ACF328AFFF8700F38CF0 /* Notification.Name+Extension.swift in Sources */,
 				CFA8ACDF28AFB3EA00F38CF0 /* BaseViewController.swift in Sources */,
 				CFA8ACD628AFA24000F38CF0 /* MainViewController.swift in Sources */,
 				CFA8ACE328AFC54100F38CF0 /* BaseViewVC.swift in Sources */,
 				CFA8ACDD28AFACEB00F38CF0 /* TabBarController.swift in Sources */,
+				CFA8AD0428B153C700F38CF0 /* Endpoint.swift in Sources */,
 				CFA8ACB628AF9FB300F38CF0 /* AppDelegate.swift in Sources */,
+				CFA8ACFE28B1472200F38CF0 /* BaseCollectionViewCell.swift in Sources */,
+				CFA8ACFC28B140E500F38CF0 /* ImagePickCollectionViewCell.swift in Sources */,
 				CFA8ACEC28AFCCD500F38CF0 /* MainTextField.swift in Sources */,
 				CFA8ACEE28AFF93000F38CF0 /* ApiKey.swift in Sources */,
+				CFA8ACF828B12D2400F38CF0 /* ImagePickViewVC.swift in Sources */,
 				CFA8ACB828AF9FB300F38CF0 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -510,6 +562,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		CFA8AD0728B1D31700F38CF0 /* XCRemoteSwiftPackageReference "JGProgressHUD" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/JonasGessner/JGProgressHUD.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -532,6 +592,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CFA8ACD228AFA16400F38CF0 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
 			productName = SwiftyJSON;
+		};
+		CFA8AD0828B1D31700F38CF0 /* JGProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CFA8AD0728B1D31700F38CF0 /* XCRemoteSwiftPackageReference "JGProgressHUD" */;
+			productName = JGProgressHUD;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

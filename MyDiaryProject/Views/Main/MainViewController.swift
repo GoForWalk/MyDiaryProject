@@ -7,11 +7,11 @@
 
 import UIKit
 import Alamofire
+import Kingfisher
 
 final class MainViewController: KeyboardViewController {
 
     let mainView = MainViewVC()
-    
 
     override func loadView() {
         self.view = mainView
@@ -19,23 +19,49 @@ final class MainViewController: KeyboardViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.isNavigationBarHidden = true
-    }
+        
 
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = true
+        addNotificationObserver()
+    }
+    
+
+    deinit {
+        removeNotificationObserver()
+    }
+    
     override func configure() {
         mainView.textView.delegate = self
         mainView.titleTextField.delegate = self
+       
         mainView.nameTextField.delegate = self
     }
     
-    override func setAction() {
+    func addNotificationObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(getPhoto(_:)), name: Notification.Name.imagePick, object: nil)
+    }
+    
+    func removeNotificationObserver() {
+        NotificationCenter.default.removeObserver(self, name: Notification.Name.imagePick, object: nil)
+    }
         
-        let tap = UITapGestureRecognizer(target: self, action: #selector(resignKeyboard(_:)))
+    
+    override func setAction() {
+        print(#function)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(endEditingKeyboard))
+
         mainView.addGestureRecognizer(tap)
+        mainView.mainImageView.addGestureRecognizer(tap)
         
         mainView.nameTextField.addTarget(self, action: #selector(resignKeyboard(_:)), for: .editingDidEndOnExit)
         
         mainView.titleTextField.addTarget(self, action: #selector(resignKeyboard(_:)), for: .editingDidEndOnExit)
+        
+        mainView.imageAddButton.addTarget(self, action: #selector(pushImagePickView(_:)), for: .touchUpInside)
         
     }
 
@@ -43,6 +69,12 @@ final class MainViewController: KeyboardViewController {
 
 // MARK: Selector Function
 extension MainViewController {
+    
+    @objc func endEditingKeyboard(_ sender: UITapGestureRecognizer?) {
+        print(#function)
+        mainView.endEditing(true)
+    }
+    
     
     @objc func resignKeyboard(_ sender: Any?) {
         
@@ -58,18 +90,29 @@ extension MainViewController {
         
     }
 
+    @objc func pushImagePickView(_ sender: UIButton?) {
+        presentVC(ImagePickViewController(), transitionType: .push)
+    }
+    
+    @objc func getPhoto(_ notification: NSNotification) {
+        print(#function)
+        guard let strURL = notification.userInfo?["imageURL"] as? String else { return }
+        
+        let url = URL(string: strURL)!
+        
+        mainView.mainImageView.kf.setImage(with: url)
+    }
 }
 
 extension MainViewController: UITextViewDelegate {
     
     func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
-        self.view.frame.origin.y = restoreFrameValue
+
         return true
     }
     
-    
     func textViewDidEndEditing(_ textView: UITextView) {
-        self.view.frame.origin.y = self.restoreFrameValue
+
     }
     
 }
@@ -77,11 +120,11 @@ extension MainViewController: UITextViewDelegate {
 extension MainViewController: UITextFieldDelegate {
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.view.frame.origin.y = restoreFrameValue
+
     }
     
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        self.view.frame.origin.y = self.restoreFrameValue
+
         return true
     }
 }

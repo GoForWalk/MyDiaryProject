@@ -43,6 +43,9 @@ class KeyboardViewController: BaseViewController {
             let keyboardRectangle = keyboardFrame.cgRectValue
             let keyboardHeight = keyboardRectangle.height
             
+            if restoreFrameValue == keyboardHeight { return }
+            setNewFrameValue(keyboardHeight)
+            
             UIView.animate(withDuration: 0.3) {
                 self.view.frame.origin.y -= (keyboardHeight - (self.tabBarController?.tabBar.frame.size.height)!/2)
             }
@@ -58,12 +61,18 @@ class KeyboardViewController: BaseViewController {
                 let keyboardRectangle = keyboardFrame.cgRectValue
                 let keyboardHeight = keyboardRectangle.height
                 
+                setNewFrameValue(0)
+                
                 UIView.animate(withDuration: 0.5) {
-                    self.view.frame.origin.y += (keyboardHeight
-                    + (self.tabBarController?.tabBar.frame.size.height)!/2)
-
+                    self.view.frame.origin.y += (keyboardHeight - (self.tabBarController?.tabBar.frame.size.height)!/2)
                 }
             }
         }
     }
+    
+    func setNewFrameValue(_ frameHeight: CGFloat) {
+        print(#function)
+        restoreFrameValue = frameHeight
+    }
+    
 }

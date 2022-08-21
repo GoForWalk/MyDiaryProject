@@ -7,6 +7,11 @@
 
 import UIKit
 
+enum TransitionType {
+    case push
+    case present
+}
+
 class BaseViewController: UIViewController {
 
     override func viewDidLoad() {
@@ -27,6 +32,17 @@ class BaseViewController: UIViewController {
     
     func setAction() {
         
+    }
+    
+    func presentVC<T: UIViewController>(_ vc: T, transitionType: TransitionType, presentStyle: UIModalPresentationStyle = .automatic) {
+        
+        switch transitionType {
+        case .push:
+            self.navigationController?.pushViewController(vc, animated: true)
+        case .present:
+            modalPresentationStyle = presentStyle
+            present(vc, animated: true)
+        }
     }
     
 }

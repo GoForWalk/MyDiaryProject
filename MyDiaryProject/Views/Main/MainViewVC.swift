@@ -90,7 +90,6 @@ class MainViewVC: BaseViewVC {
         textView.snp.makeConstraints { make in
             make.top.equalTo(nameTextField.snp.bottom).offset(20)
             make.trailing.leading.equalTo(mainImageView)
-//            make.bottom.greaterThanOrEqualTo(self.safeAreaLayoutGuide).offset(-8)
             make.height.equalTo(self).multipliedBy(0.3)
         }
     }//: layoutConstraint
