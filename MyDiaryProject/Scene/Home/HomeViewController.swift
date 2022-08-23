@@ -16,10 +16,6 @@ class HomeViewController: BaseViewController {
     lazy var tableView: UITableView = {
         let view = UITableView()
         
-        view.delegate = self
-        view.dataSource = self
-        view.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        
         view.backgroundColor = .gray
         return view
     }()
@@ -36,6 +32,10 @@ class HomeViewController: BaseViewController {
         
         view.addSubview(tableView)
         
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        tableView.register(HomeTableViewCell.self, forCellReuseIdentifier: HomeTableViewCell.identifier)
         tableView.snp.makeConstraints { make in
             make.edges.equalTo(view.safeAreaLayoutGuide)
         }
@@ -86,14 +86,25 @@ extension HomeViewController {
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
   
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 120
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tasks.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell")!
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeTableViewCell.identifier) as? HomeTableViewCell else { return UITableViewCell() }
         
-        cell.textLabel?.text = tasks[indexPath.row].diaryTitle
+        let diaryData = tasks[indexPath.row]
+        let formatter = DateFormatter()
+        
+        formatter.dateFormat = "yyyy.MM.dd"
+        
+        cell.titleLabel.text = diaryData.diaryTitle
+        cell.dateLabel.text = formatter.string(from: diaryData.diaryDate)
+        cell.contentLabel.text = diaryData.diaryContent
         
         return cell
     }

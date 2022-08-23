@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CF09C45B28B52DA000D0DE4C /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF09C45A28B52DA000D0DE4C /* HomeTableViewCell.swift */; };
+		CF09C45D28B5355800D0DE4C /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF09C45C28B5355800D0DE4C /* BaseTableViewCell.swift */; };
 		CFA8ACB628AF9FB300F38CF0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA8ACB528AF9FB300F38CF0 /* AppDelegate.swift */; };
 		CFA8ACB828AF9FB300F38CF0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA8ACB728AF9FB300F38CF0 /* SceneDelegate.swift */; };
 		CFA8ACBF28AF9FB500F38CF0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFA8ACBE28AF9FB500F38CF0 /* Assets.xcassets */; };
@@ -44,6 +45,7 @@
 
 /* Begin PBXFileReference section */
 		CF09C45A28B52DA000D0DE4C /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
+		CF09C45C28B5355800D0DE4C /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		CFA8ACB228AF9FB300F38CF0 /* MyDiaryProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyDiaryProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFA8ACB528AF9FB300F38CF0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CFA8ACB728AF9FB300F38CF0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 				CFA8ACE228AFC54100F38CF0 /* BaseViewVC.swift */,
 				CFA8ACEF28AFFD9D00F38CF0 /* KeyboardViewController.swift */,
 				CFA8ACFD28B1472200F38CF0 /* BaseCollectionViewCell.swift */,
+				CF09C45C28B5355800D0DE4C /* BaseTableViewCell.swift */,
 			);
 			path = BaseView;
 			sourceTree = "<group>";
@@ -357,6 +360,7 @@
 				CFA8ACB628AF9FB300F38CF0 /* AppDelegate.swift in Sources */,
 				CFA8AD1328B319EC00F38CF0 /* RealmModel.swift in Sources */,
 				CFA8ACFE28B1472200F38CF0 /* BaseCollectionViewCell.swift in Sources */,
+				CF09C45D28B5355800D0DE4C /* BaseTableViewCell.swift in Sources */,
 				CFA8ACFC28B140E500F38CF0 /* ImagePickCollectionViewCell.swift in Sources */,
 				CF09C45B28B52DA000D0DE4C /* HomeTableViewCell.swift in Sources */,
 				CFA8ACEC28AFCCD500F38CF0 /* MainTextField.swift in Sources */,

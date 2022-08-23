@@ -26,7 +26,7 @@ final class MainViewController: KeyboardViewController {
     
     let formatter = DateFormatter()
     
-    var currentDate: Date?
+    var currentDate = Date()
     
     override func loadView() {
         self.view = mainView
@@ -42,6 +42,7 @@ final class MainViewController: KeyboardViewController {
         mainView.addGestureRecognizer(tap)
         mainView.mainImageView.addGestureRecognizer(tap)
         setDateFomatter()
+        mainView.dateTextField.text = formatter.string(from: currentDate)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -96,7 +97,7 @@ extension MainViewController {
 
         guard let title = mainView.titleTextField.text else { throw MyDiaryError.titleEmpty }
         
-        guard let date = currentDate else { throw MyDiaryError.dateEmpty}
+        let date = currentDate
         
         let task = UserDiary(diaryTitle: title , diaryContent: mainView.textView.text, diaryDate: date, registedDate: Date(), imageURL: nil)
         
@@ -105,6 +106,10 @@ extension MainViewController {
             localRealm.add(task) // Create
             print("Realm add Done")
         }
+        
+        mainView.titleTextField.text = ""
+        mainView.mainImageView.image = nil
+        mainView.textView.text = ""
     }
     
     
