@@ -10,7 +10,7 @@ import UIKit
 class KeyboardViewController: BaseViewController {
     
     var restoreFrameValue: CGFloat = 0.0
-    
+        
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         addKeyboardNotifications(vc: self)
@@ -42,13 +42,15 @@ class KeyboardViewController: BaseViewController {
             
             let keyboardRectangle = keyboardFrame.cgRectValue
             let keyboardHeight = keyboardRectangle.height
+            let frameHeight = keyboardHeight - (self.tabBarController?.tabBar.frame.size.height)!/2
+            var moveHeight = frameHeight
             
-            if restoreFrameValue == keyboardHeight { return }
-            setNewFrameValue(keyboardHeight)
-            
+            if restoreFrameValue >= frameHeight { return }
+            else if restoreFrameValue < frameHeight { moveHeight = frameHeight - restoreFrameValue }
             UIView.animate(withDuration: 0.3) {
-                self.view.frame.origin.y -= (keyboardHeight - (self.tabBarController?.tabBar.frame.size.height)!/2)
+                self.view.frame.origin.y -= moveHeight
             }
+            setNewFrameValue(frameHeight)
         }
     }
     
@@ -56,23 +58,16 @@ class KeyboardViewController: BaseViewController {
         print(#function, self.description)
         
         if self.view.frame.origin.y != restoreFrameValue {
-            if let keyboardFrame: NSValue =
-                notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
-                let keyboardRectangle = keyboardFrame.cgRectValue
-                let keyboardHeight = keyboardRectangle.height
-                
-                setNewFrameValue(0)
-                
-                UIView.animate(withDuration: 0.5) {
-                    self.view.frame.origin.y += (keyboardHeight - (self.tabBarController?.tabBar.frame.size.height)!/2)
-                }
+            UIView.animate(withDuration: 0.5) {
+                self.view.frame.origin.y += self.restoreFrameValue
             }
+            setNewFrameValue(0)
         }
     }
     
     func setNewFrameValue(_ frameHeight: CGFloat) {
-        print(#function)
         restoreFrameValue = frameHeight
+        print(#function, restoreFrameValue)
     }
     
 }

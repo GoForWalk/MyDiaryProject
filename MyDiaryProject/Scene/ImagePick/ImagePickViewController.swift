@@ -87,7 +87,7 @@ extension ImagePickViewController: UICollectionViewDelegate, UICollectionViewDat
     }
 }
 
-// 검색기능 추가
+// TODO: 검색기능 추가
 extension ImagePickViewController: UISearchBarDelegate {
     
     

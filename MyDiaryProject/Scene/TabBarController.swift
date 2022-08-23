@@ -35,8 +35,17 @@ class TabbarController: UITabBarController {
             selectedImage: UIImage(systemName: "pencil.circle.fill")
         )
         
+        let homeViewController = HomeViewController()
+        homeViewController.tabBarItem = UITabBarItem(
+            title: "Home",
+            image: UIImage(systemName: "pencil.circle"),
+            selectedImage: UIImage(systemName: "pencil.circle.fill")
+        )
+        
         viewControllers = [
-            UINavigationController(rootViewController: mainViewController) 
+            UINavigationController(rootViewController: mainViewController),
+            UINavigationController(rootViewController: homeViewController)
+            
         ]
     }
 }

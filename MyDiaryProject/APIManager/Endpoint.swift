@@ -30,7 +30,7 @@ enum UnplashParamType {
 
 struct UnplshParam {
     
-    static func getParam(paramType: UnplashParamType, page: Int = 1) -> Dictionary<String, String> {
+    static func getParam(paramType: UnplashParamType, page: Int = 1, searchWord: String?) -> Dictionary<String, String> {
         
         switch paramType {
         case .photo:

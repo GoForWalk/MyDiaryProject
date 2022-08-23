@@ -36,9 +36,9 @@ class MainViewVC: BaseViewVC {
         return textField
     }()
 
-    lazy var nameTextField: MainTextField = {
+    lazy var dateTextField: MainTextField = {
         let textField = MainTextField()
-        textField.placeholder = "이름을 입력하세요"
+        textField.placeholder = "날짜를 입력하세요"
         
         return textField
     }()
@@ -54,21 +54,32 @@ class MainViewVC: BaseViewVC {
         return textView
     }()
     
+    let sampleButton: UIButton = {
+        let view = UIButton()
+        view.backgroundColor = .green
+        view.layer.cornerRadius = 8
+        view.clipsToBounds = true
+        view.setTitleColor(UIColor.white, for: .normal)
+        view.setTitle("저장하기", for: .normal)
+        view.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .heavy)
+        return view
+    }()
     
     override func configure() {
-        [mainImageView, imageAddButton, titleTextField, nameTextField, textView].forEach {
+        [mainImageView, imageAddButton, titleTextField, dateTextField, textView, sampleButton].forEach {
             addSubview($0)
         }
     }
     
     override func layoutConstraint() {
+        
         mainImageView.snp.makeConstraints { make in
             make.width.equalTo(self).multipliedBy(0.85)
             make.height.equalTo(self.snp.width).multipliedBy(0.70)
             make.centerX.equalTo(self)
             make.top.equalTo(self.safeAreaLayoutGuide).offset(20)
         }
-        
+                
         imageAddButton.snp.makeConstraints { make in
             make.trailing.bottom.equalTo(mainImageView).inset(8)
             make.height.equalTo(mainImageView).multipliedBy(0.2)
@@ -81,16 +92,23 @@ class MainViewVC: BaseViewVC {
             make.height.equalTo(44)
         }
         
-        nameTextField.snp.makeConstraints { make in
+        dateTextField.snp.makeConstraints { make in
             make.top.equalTo(titleTextField.snp.bottom).offset(20)
             make.trailing.leading.equalTo(mainImageView)
             make.height.equalTo(44)
         }
         
         textView.snp.makeConstraints { make in
-            make.top.equalTo(nameTextField.snp.bottom).offset(20)
+            make.top.equalTo(dateTextField.snp.bottom).offset(20)
             make.trailing.leading.equalTo(mainImageView)
-            make.height.equalTo(self).multipliedBy(0.3)
+            make.height.equalTo(self).multipliedBy(0.2)
         }
+        
+        sampleButton.snp.makeConstraints { make in
+            make.height.equalTo(44)
+            make.top.equalTo(textView.snp.bottom).offset(20)
+            make.trailing.leading.equalTo(mainImageView)
+        }
+
     }//: layoutConstraint
 }

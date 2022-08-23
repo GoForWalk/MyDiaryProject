@@ -19,7 +19,7 @@ class UnsplashAPIManger {
         
         let url = UnSplashEndPoint.photoURL
         
-        let param: Parameters = UnplshParam.getParam(paramType: .photo, page: page)
+        let param: Parameters = UnplshParam.getParam(paramType: .photo, page: page, searchWord: nil)
         
         AF.request(url, method: .get, parameters: param).validate().responseData { data in
             
