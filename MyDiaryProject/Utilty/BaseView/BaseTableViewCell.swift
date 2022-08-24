@@ -13,6 +13,7 @@ class BaseTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         configureCell()
         setLayoutConstraints()
+        backgroundColor = .clear
     }
     
     required init?(coder: NSCoder) {

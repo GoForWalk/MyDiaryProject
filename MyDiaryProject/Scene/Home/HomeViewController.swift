@@ -11,6 +11,7 @@ import RealmSwift
 
 class HomeViewController: BaseViewController {
     
+    // MARK: Properties
     let localRealm = try! Realm()
     
     lazy var tableView: UITableView = {
@@ -27,6 +28,7 @@ class HomeViewController: BaseViewController {
         }
     }
     
+    // MARK: ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -59,6 +61,7 @@ class HomeViewController: BaseViewController {
     
 }
 
+// MARK: SetNav
 extension HomeViewController {
     
     func setBarrbutton() {
@@ -67,6 +70,8 @@ extension HomeViewController {
             UIBarButtonItem(title: "정렬", style: .plain, target: self, action: #selector(sortData)),
             UIBarButtonItem(title: "필터", style: .plain, target: self, action: #selector(filterData))
         ]
+        
+//        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(transitionView))
     }
     
     @objc func sortData() {
@@ -82,8 +87,13 @@ extension HomeViewController {
 //            .filter("diaryTitle = '오늘의 일기'") // 해당 스트링 값으로 색인하는 방법 (정확하게 맞는 값만 출력한다.)
     }
     
+//    @objc func transitionView() {
+//        presentVC(MainViewController(), transitionType: .presentNavigation)
+//    }
+    
 }
 
+// MARK: TableViewDelegate, TableViewDataSource
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
   
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -105,6 +115,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         cell.titleLabel.text = diaryData.diaryTitle
         cell.dateLabel.text = formatter.string(from: diaryData.diaryDate)
         cell.contentLabel.text = diaryData.diaryContent
+        cell.diaryImageView.image = loadImageFromDocument(fileName: "\(tasks[indexPath.row].uuID).jpg")
         
         return cell
     }
@@ -159,6 +170,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         // 역순으로 추가
         
+        // TODO: 여기서 삭제합니다.
         let favorite = UIContextualAction(style: .normal, title: "즐겨찾기") { action, view, completionHandler in
             
             print("favorite Button Clicked")
@@ -172,4 +184,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         return UISwipeActionsConfiguration(actions: [favorite, example])
  
     }
+    
+    
 }

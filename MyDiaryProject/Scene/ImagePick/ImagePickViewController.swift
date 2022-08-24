@@ -12,10 +12,14 @@ class ImagePickViewController: BaseViewController {
 
     let imageViewVC = ImagePickViewVC()
     let apiManager = UnsplashAPIManger.share
+    var selectIndexPath: IndexPath?
+    var selectImage: UIImage?
     
     var dataList: [UnSplashDataProtocol] = []
     var currentPage = 1
     
+    var delegate: SelectImageDelegate?
+        
     override func loadView() {
         self.view = imageViewVC
     }
@@ -75,6 +79,8 @@ extension ImagePickViewController: UICollectionViewDelegate, UICollectionViewDat
         let url = URL(string: dataList[indexPath.item].smallImageURL)!
         
         cell.imageView.kf.setImage(with: url)
+        cell.layer.borderWidth = selectIndexPath == indexPath ? 4 : 0
+        cell.layer.borderColor = selectIndexPath == indexPath ? UIColor.systemBlue.cgColor : nil
         
         return cell
     }
@@ -83,8 +89,24 @@ extension ImagePickViewController: UICollectionViewDelegate, UICollectionViewDat
         print(#function)
         let sendingData: [String: String] = ["imageURL": dataList[indexPath.item].mediumImageURL]
         
-        presentAlert(data: sendingData)
+        selectIndexPath = indexPath
+        
+        guard let cell = collectionView.cellForItem(at: indexPath) as? ImagePickCollectionViewCell, let image = cell.imageView.image else { return }
+        
+        selectImage = image
+        
+        collectionView.reloadData()
+//        presentAlert(data: sendingData, image: image)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        print(#function)
+        selectImage = nil
+        selectIndexPath = nil
+        collectionView.reloadData()
+    }
+    
+    
 }
 
 // TODO: 검색기능 추가
@@ -94,7 +116,7 @@ extension ImagePickViewController: UISearchBarDelegate {
     
 }
 
-// Pagenation
+//MARK: Pagenation
 extension ImagePickViewController: UICollectionViewDataSourcePrefetching {
     
     func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
@@ -112,14 +134,15 @@ extension ImagePickViewController: UICollectionViewDataSourcePrefetching {
 
 extension ImagePickViewController {
     
-    func presentAlert(data: Dictionary<String, String>) {
+    func presentAlert(data: Dictionary<String, String>, image: UIImage) {
         
         let alert = UIAlertController(title: "사진을 선택하시겠습니까?", message: "", preferredStyle: .alert)
         
         let ok = UIAlertAction(title: "선택", style: .default) { _ in
             
-            NotificationCenter.default.post(name: Notification.Name.imagePick, object: nil, userInfo: data)
+//            NotificationCenter.default.post(name: Notification.Name.imagePick, object: nil, userInfo: data)
 
+            self.delegate?.sendImageData(image: image)
             self.navigationController?.popViewController(animated: true)
         }
         

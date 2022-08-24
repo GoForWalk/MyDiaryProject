@@ -11,6 +11,11 @@ import Kingfisher
 import RealmSwift
 import PhotosUI
 
+protocol SelectImageDelegate {
+    func sendImageData(image: UIImage)
+}
+
+
 final class MainViewController: KeyboardViewController {
 
     let mainView = MainViewVC()
@@ -23,9 +28,7 @@ final class MainViewController: KeyboardViewController {
         datePicker.datePickerMode = .date
         return datePicker
     }()
-    
-    let formatter = DateFormatter()
-    
+        
     var currentDate = Date()
     
     override func loadView() {
@@ -38,11 +41,6 @@ final class MainViewController: KeyboardViewController {
         
         addNotificationObserver()
 
-        let tap = UITapGestureRecognizer(target: self, action: #selector(endEditingKeyboard(_:)))
-        mainView.addGestureRecognizer(tap)
-        mainView.mainImageView.addGestureRecognizer(tap)
-        setDateFomatter()
-        mainView.dateTextField.text = formatter.string(from: currentDate)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -55,11 +53,17 @@ final class MainViewController: KeyboardViewController {
     }
     
     override func configure() {
+        super.configure()
         mainView.textView.delegate = self
         mainView.titleTextField.delegate = self
        
         mainView.dateTextField.delegate = self
         mainView.dateTextField.inputView = datepicker
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(endEditingKeyboard(_:)))
+        mainView.addGestureRecognizer(tap)
+        mainView.mainImageView.addGestureRecognizer(tap)
+        mainView.dateTextField.text = formatter.string(from: currentDate)
     }
     
     func addNotificationObserver() {
@@ -70,8 +74,9 @@ final class MainViewController: KeyboardViewController {
         NotificationCenter.default.removeObserver(self, name: Notification.Name.imagePick, object: nil)
     }
         
-    func setDateFomatter(){
-        formatter.dateFormat = "yyyy.MM.dd"
+    override func setDateFormatter() -> String {
+        print(#function)
+        return "yyyy.MM.dd"
     }
     
     override func setAction() {
@@ -100,12 +105,20 @@ extension MainViewController {
         let date = currentDate
         
         let task = UserDiary(diaryTitle: title , diaryContent: mainView.textView.text, diaryDate: date, registedDate: Date(), imageURL: nil)
-        
-        try! localRealm.write{
-            print(task)
-            localRealm.add(task) // Create
-            print("Realm add Done")
+        do {
+            try localRealm.write{
+                print(task)
+                localRealm.add(task) // Create
+                print("Realm add Done")
+            }
+        } catch let error as NSError {
+            print(error)
         }
+        
+        if let image = mainView.mainImageView.image {
+            saveImageToDocument(fileName: "\(task.uuID)", image: image)
+        }
+        
         
         mainView.titleTextField.text = ""
         mainView.mainImageView.image = nil
@@ -205,7 +218,10 @@ extension MainViewController {
     
     
     func pushImagePickView() {
-        presentVC(ImagePickViewController(), transitionType: .push)
+        let vc = ImagePickViewController()
+        vc.delegate = self // Delegate 적용
+        
+        presentVC(vc, transitionType: .push)
         view.endEditing(true)
     }
 
@@ -249,6 +265,16 @@ extension MainViewController: PHPickerViewControllerDelegate {
         
     }
 }
+
+// MARK: SelectImageDelegate
+extension MainViewController: SelectImageDelegate {
+    
+    func sendImageData(image: UIImage) {
+        mainView.mainImageView.image = image
+        print(#function)
+    }
+}
+
 
 // TODO: Error 처리로 데이터 삽입 조건 컨트롤
 enum MyDiaryError: Error {

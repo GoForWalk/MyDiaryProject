@@ -73,6 +73,12 @@ class HomeTableViewCell: BaseTableViewCell {
             }
         }
         
+        [titleLabel, dateLabel].forEach {
+            $0.snp.makeConstraints { make in
+                make.height.equalTo(20)
+            }
+        }
+        
         contentLabel.snp.makeConstraints { make in
             make.top.equalTo(dateLabel.snp.bottom).offset(4)
             make.bottom.equalTo(diaryStackView.snp.bottom)

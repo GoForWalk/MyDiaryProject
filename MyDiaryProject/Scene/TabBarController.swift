@@ -38,13 +38,21 @@ class TabbarController: UITabBarController {
         let homeViewController = HomeViewController()
         homeViewController.tabBarItem = UITabBarItem(
             title: "Home",
-            image: UIImage(systemName: "pencil.circle"),
-            selectedImage: UIImage(systemName: "pencil.circle.fill")
+            image: UIImage(systemName: "star"),
+            selectedImage: UIImage(systemName: "star.fill")
+        )
+        
+        let backupViewContrller = BackUpViewController()
+        backupViewContrller.tabBarItem = UITabBarItem(
+            title: "BackUp",
+            image: UIImage(systemName: "gearshape"),
+            selectedImage: UIImage(systemName: "gearshape.fill")
         )
         
         viewControllers = [
             UINavigationController(rootViewController: mainViewController),
-            UINavigationController(rootViewController: homeViewController)
+            UINavigationController(rootViewController: homeViewController),
+            UINavigationController(rootViewController: backupViewContrller)
             
         ]
     }

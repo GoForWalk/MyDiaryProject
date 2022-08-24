@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		CF09C45B28B52DA000D0DE4C /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF09C45A28B52DA000D0DE4C /* HomeTableViewCell.swift */; };
 		CF09C45D28B5355800D0DE4C /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF09C45C28B5355800D0DE4C /* BaseTableViewCell.swift */; };
+		CF09C45F28B5D28400D0DE4C /* FileManager+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF09C45E28B5D28400D0DE4C /* FileManager+Extension.swift */; };
+		CF09C46428B6133F00D0DE4C /* BackUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF09C46328B6133F00D0DE4C /* BackUpViewController.swift */; };
+		CF09C46628B6137B00D0DE4C /* BackUpViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF09C46528B6137B00D0DE4C /* BackUpViewVC.swift */; };
+		CF09C46828B613B400D0DE4C /* BackUpTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF09C46728B613B400D0DE4C /* BackUpTableViewCell.swift */; };
+		CF09C46A28B614CC00D0DE4C /* SquareButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF09C46928B614CC00D0DE4C /* SquareButton.swift */; };
 		CFA8ACB628AF9FB300F38CF0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA8ACB528AF9FB300F38CF0 /* AppDelegate.swift */; };
 		CFA8ACB828AF9FB300F38CF0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA8ACB728AF9FB300F38CF0 /* SceneDelegate.swift */; };
 		CFA8ACBF28AF9FB500F38CF0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFA8ACBE28AF9FB500F38CF0 /* Assets.xcassets */; };
@@ -46,6 +51,11 @@
 /* Begin PBXFileReference section */
 		CF09C45A28B52DA000D0DE4C /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
 		CF09C45C28B5355800D0DE4C /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
+		CF09C45E28B5D28400D0DE4C /* FileManager+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Extension.swift"; sourceTree = "<group>"; };
+		CF09C46328B6133F00D0DE4C /* BackUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackUpViewController.swift; sourceTree = "<group>"; };
+		CF09C46528B6137B00D0DE4C /* BackUpViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackUpViewVC.swift; sourceTree = "<group>"; };
+		CF09C46728B613B400D0DE4C /* BackUpTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackUpTableViewCell.swift; sourceTree = "<group>"; };
+		CF09C46928B614CC00D0DE4C /* SquareButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareButton.swift; sourceTree = "<group>"; };
 		CFA8ACB228AF9FB300F38CF0 /* MyDiaryProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyDiaryProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFA8ACB528AF9FB300F38CF0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CFA8ACB728AF9FB300F38CF0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -93,6 +103,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CF09C46028B5FD0400D0DE4C /* DiaryDetail */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DiaryDetail;
+			sourceTree = "<group>";
+		};
+		CF09C46228B5FD5900D0DE4C /* Backup */ = {
+			isa = PBXGroup;
+			children = (
+				CF09C46328B6133F00D0DE4C /* BackUpViewController.swift */,
+				CF09C46528B6137B00D0DE4C /* BackUpViewVC.swift */,
+				CF09C46728B613B400D0DE4C /* BackUpTableViewCell.swift */,
+			);
+			path = Backup;
+			sourceTree = "<group>";
+		};
 		CFA8ACA928AF9FB300F38CF0 = {
 			isa = PBXGroup;
 			children = (
@@ -160,8 +187,10 @@
 		CFA8ACDA28AFA40600F38CF0 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
-				CFA8AD1428B32A9D00F38CF0 /* Home */,
 				CFA8ACDC28AFACEB00F38CF0 /* TabBarController.swift */,
+				CF09C46228B5FD5900D0DE4C /* Backup */,
+				CF09C46028B5FD0400D0DE4C /* DiaryDetail */,
+				CFA8AD1428B32A9D00F38CF0 /* Home */,
 				CFA8ACF428B12CB300F38CF0 /* ImagePick */,
 				CFA8ACDB28AFA41900F38CF0 /* Main */,
 			);
@@ -181,6 +210,7 @@
 			isa = PBXGroup;
 			children = (
 				CFA8ACEB28AFCCD500F38CF0 /* MainTextField.swift */,
+				CF09C46928B614CC00D0DE4C /* SquareButton.swift */,
 			);
 			path = SubView;
 			sourceTree = "<group>";
@@ -209,6 +239,7 @@
 			isa = PBXGroup;
 			children = (
 				CFA8ACF228AFFF8700F38CF0 /* Notification.Name+Extension.swift */,
+				CF09C45E28B5D28400D0DE4C /* FileManager+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -350,11 +381,14 @@
 				CFA8ACFA28B1348200F38CF0 /* UnsplashAPIManager.swift in Sources */,
 				CFA8AD0628B15B5200F38CF0 /* ReuseableProtocol.swift in Sources */,
 				CFA8AD1628B32AB100F38CF0 /* HomeViewController.swift in Sources */,
+				CF09C46428B6133F00D0DE4C /* BackUpViewController.swift in Sources */,
 				CFA8ACF028AFFD9D00F38CF0 /* KeyboardViewController.swift in Sources */,
 				CFA8ACF328AFFF8700F38CF0 /* Notification.Name+Extension.swift in Sources */,
 				CFA8ACDF28AFB3EA00F38CF0 /* BaseViewController.swift in Sources */,
 				CFA8ACD628AFA24000F38CF0 /* MainViewController.swift in Sources */,
 				CFA8ACE328AFC54100F38CF0 /* BaseViewVC.swift in Sources */,
+				CF09C46628B6137B00D0DE4C /* BackUpViewVC.swift in Sources */,
+				CF09C45F28B5D28400D0DE4C /* FileManager+Extension.swift in Sources */,
 				CFA8ACDD28AFACEB00F38CF0 /* TabBarController.swift in Sources */,
 				CFA8AD0428B153C700F38CF0 /* Endpoint.swift in Sources */,
 				CFA8ACB628AF9FB300F38CF0 /* AppDelegate.swift in Sources */,
@@ -362,10 +396,12 @@
 				CFA8ACFE28B1472200F38CF0 /* BaseCollectionViewCell.swift in Sources */,
 				CF09C45D28B5355800D0DE4C /* BaseTableViewCell.swift in Sources */,
 				CFA8ACFC28B140E500F38CF0 /* ImagePickCollectionViewCell.swift in Sources */,
+				CF09C46A28B614CC00D0DE4C /* SquareButton.swift in Sources */,
 				CF09C45B28B52DA000D0DE4C /* HomeTableViewCell.swift in Sources */,
 				CFA8ACEC28AFCCD500F38CF0 /* MainTextField.swift in Sources */,
 				CFA8ACEE28AFF93000F38CF0 /* ApiKey.swift in Sources */,
 				CFA8AD1828B3353300F38CF0 /* Constant.swift in Sources */,
+				CF09C46828B613B400D0DE4C /* BackUpTableViewCell.swift in Sources */,
 				CFA8ACF828B12D2400F38CF0 /* ImagePickViewVC.swift in Sources */,
 				CFA8ACB828AF9FB300F38CF0 /* SceneDelegate.swift in Sources */,
 			);

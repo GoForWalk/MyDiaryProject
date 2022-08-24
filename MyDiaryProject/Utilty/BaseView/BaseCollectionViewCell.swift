@@ -13,7 +13,7 @@ class BaseCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         configureCell()
         setLayoutConstraints()
-        
+        backgroundColor = .clear
     }
     
     required init?(coder: NSCoder) {
