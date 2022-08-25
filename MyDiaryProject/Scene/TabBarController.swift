@@ -14,6 +14,8 @@ class TabbarController: UITabBarController {
         
         setupTabbarItem()
         setupTabBarLayout()
+        fetchDocumentZipFile()
+        photoFolderManager()
     }
     
     private func setupTabBarLayout() {

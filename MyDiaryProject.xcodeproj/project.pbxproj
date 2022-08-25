@@ -14,6 +14,8 @@
 		CF09C46628B6137B00D0DE4C /* BackUpViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF09C46528B6137B00D0DE4C /* BackUpViewVC.swift */; };
 		CF09C46828B613B400D0DE4C /* BackUpTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF09C46728B613B400D0DE4C /* BackUpTableViewCell.swift */; };
 		CF09C46A28B614CC00D0DE4C /* SquareButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF09C46928B614CC00D0DE4C /* SquareButton.swift */; };
+		CF09C46C28B641A400D0DE4C /* DiaryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF09C46B28B641A400D0DE4C /* DiaryDetailViewController.swift */; };
+		CF09C46F28B7018B00D0DE4C /* Zip in Frameworks */ = {isa = PBXBuildFile; productRef = CF09C46E28B7018B00D0DE4C /* Zip */; };
 		CFA8ACB628AF9FB300F38CF0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA8ACB528AF9FB300F38CF0 /* AppDelegate.swift */; };
 		CFA8ACB828AF9FB300F38CF0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA8ACB728AF9FB300F38CF0 /* SceneDelegate.swift */; };
 		CFA8ACBF28AF9FB500F38CF0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFA8ACBE28AF9FB500F38CF0 /* Assets.xcassets */; };
@@ -56,6 +58,7 @@
 		CF09C46528B6137B00D0DE4C /* BackUpViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackUpViewVC.swift; sourceTree = "<group>"; };
 		CF09C46728B613B400D0DE4C /* BackUpTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackUpTableViewCell.swift; sourceTree = "<group>"; };
 		CF09C46928B614CC00D0DE4C /* SquareButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareButton.swift; sourceTree = "<group>"; };
+		CF09C46B28B641A400D0DE4C /* DiaryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryDetailViewController.swift; sourceTree = "<group>"; };
 		CFA8ACB228AF9FB300F38CF0 /* MyDiaryProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyDiaryProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFA8ACB528AF9FB300F38CF0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CFA8ACB728AF9FB300F38CF0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -96,6 +99,7 @@
 				CFA8ACCE28AFA06D00F38CF0 /* Kingfisher in Frameworks */,
 				CFA8ACD428AFA16400F38CF0 /* SwiftyJSON in Frameworks */,
 				CFA8ACCB28AFA05800F38CF0 /* SnapKit in Frameworks */,
+				CF09C46F28B7018B00D0DE4C /* Zip in Frameworks */,
 				CFA8AD0928B1D31700F38CF0 /* JGProgressHUD in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -106,6 +110,7 @@
 		CF09C46028B5FD0400D0DE4C /* DiaryDetail */ = {
 			isa = PBXGroup;
 			children = (
+				CF09C46B28B641A400D0DE4C /* DiaryDetailViewController.swift */,
 			);
 			path = DiaryDetail;
 			sourceTree = "<group>";
@@ -311,6 +316,7 @@
 				CFA8AD0828B1D31700F38CF0 /* JGProgressHUD */,
 				CFA8AD0D28B3163D00F38CF0 /* Realm */,
 				CFA8AD0F28B3163D00F38CF0 /* RealmSwift */,
+				CF09C46E28B7018B00D0DE4C /* Zip */,
 			);
 			productName = MyDiaryProject;
 			productReference = CFA8ACB228AF9FB300F38CF0 /* MyDiaryProject.app */;
@@ -347,6 +353,7 @@
 				CFA8ACD228AFA16400F38CF0 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 				CFA8AD0728B1D31700F38CF0 /* XCRemoteSwiftPackageReference "JGProgressHUD" */,
 				CFA8AD0C28B3163D00F38CF0 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				CF09C46D28B7018B00D0DE4C /* XCRemoteSwiftPackageReference "Zip" */,
 			);
 			productRefGroup = CFA8ACB328AF9FB300F38CF0 /* Products */;
 			projectDirPath = "";
@@ -376,6 +383,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CFA8AD0128B1531400F38CF0 /* UnsplashData.swift in Sources */,
+				CF09C46C28B641A400D0DE4C /* DiaryDetailViewController.swift in Sources */,
 				CFA8ACE528AFC88F00F38CF0 /* MainViewVC.swift in Sources */,
 				CFA8ACF628B12CD300F38CF0 /* ImagePickViewController.swift in Sources */,
 				CFA8ACFA28B1348200F38CF0 /* UnsplashAPIManager.swift in Sources */,
@@ -617,6 +625,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		CF09C46D28B7018B00D0DE4C /* XCRemoteSwiftPackageReference "Zip" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/marmelroy/Zip.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		CFA8ACC928AFA05800F38CF0 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
@@ -668,6 +684,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		CF09C46E28B7018B00D0DE4C /* Zip */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CF09C46D28B7018B00D0DE4C /* XCRemoteSwiftPackageReference "Zip" */;
+			productName = Zip;
+		};
 		CFA8ACCA28AFA05800F38CF0 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = CFA8ACC928AFA05800F38CF0 /* XCRemoteSwiftPackageReference "SnapKit" */;

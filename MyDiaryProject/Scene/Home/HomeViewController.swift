@@ -24,7 +24,7 @@ class HomeViewController: BaseViewController {
     var tasks: Results<UserDiary>! {
         didSet {
             tableView.reloadData()
-            print("Tasks Changed!")
+            print("Tasks Changed!", tasks.description)
         }
     }
     
@@ -90,6 +90,21 @@ extension HomeViewController {
 //    @objc func transitionView() {
 //        presentVC(MainViewController(), transitionType: .presentNavigation)
 //    }
+    
+    func deleteDate(index: Int) {
+        
+        let deleteData = tasks[index]
+        
+        do {
+            try localRealm.write {
+                localRealm.delete(deleteData)
+            }
+            fetchRealm()
+        } catch let error as NSError{
+            print(error)
+        }
+        
+    }
     
 }
 
@@ -161,7 +176,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         // realm 데이터 기준으로 다른 이미지 설정
         let image = tasks[indexPath.row].favorite ? "star.fill" : "star"
         
-        
         favorite.image = UIImage(systemName: image)
         favorite.backgroundColor = .systemPink
         return UISwipeActionsConfiguration(actions: [favorite, example])
@@ -169,19 +183,12 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         // 역순으로 추가
-        
         // TODO: 여기서 삭제합니다.
-        let favorite = UIContextualAction(style: .normal, title: "즐겨찾기") { action, view, completionHandler in
-            
-            print("favorite Button Clicked")
+        let delete = UIContextualAction(style: .destructive, title: "Delete") { action, view, completionHandler in
+            self.removeImageFromDocuement(fileName: "\(self.tasks[indexPath.row].uuID).jpg")
+            self.deleteDate(index: indexPath.row)
         }
-        
-        let example = UIContextualAction(style: .normal, title: "예시") { action, view, completionHandler in
-            
-            print("example Button Clicked")
-        }
-        
-        return UISwipeActionsConfiguration(actions: [favorite, example])
+        return UISwipeActionsConfiguration(actions: [delete])
  
     }
     

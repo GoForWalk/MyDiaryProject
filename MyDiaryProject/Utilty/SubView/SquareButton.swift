@@ -29,8 +29,6 @@ class SquareButton: UIButton {
     }
     
     func setLayoutConstraint() {
-        self.snp.makeConstraints { make in
-            make.width.equalTo(self.snp.height).multipliedBy(1.2)
-        }
+
     }
 }

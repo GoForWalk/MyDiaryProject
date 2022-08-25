@@ -19,8 +19,8 @@ class BackUpViewVC: BaseViewVC {
     let restorebutton: SquareButton = {
         let button = SquareButton()
         button.backgroundColor = .orange
+        button.setTitleColor( UIColor.lightGray, for: .disabled)
         button.setTitle("Restore", for: .normal)
-        button.isEnabled = false
         return button
     }()
     
@@ -29,7 +29,7 @@ class BackUpViewVC: BaseViewVC {
         stackView.spacing = 40
         stackView.alignment = .fill
         stackView.axis = .horizontal
-        stackView.distribution = .equalSpacing
+        stackView.distribution = .fillEqually
         return stackView
     }()
     

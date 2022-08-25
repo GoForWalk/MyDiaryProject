@@ -97,10 +97,10 @@ final class MainViewController: KeyboardViewController {
 extension MainViewController {
     
     // Realm Create Sample
-    @objc func saveData(_ sender: UIButton) throws {
+    @objc func saveData(_ sender: UIButton) {
         self.mainView.endEditing(true)
 
-        guard let title = mainView.titleTextField.text else { throw MyDiaryError.titleEmpty }
+        guard let title = mainView.titleTextField.text, !title.isEmpty else { return }
         
         let date = currentDate
         

@@ -6,68 +6,67 @@
 //
 
 import UIKit
+import SwiftUI
 
 class BackUpTableViewCell: BaseTableViewCell {
     
     let backuptitleLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 20, weight: .semibold)
-        
+        label.textColor = .white
+        label.text = "backup title"
         return label
     }()
     
-    let backupDateLabel: UILabel = {
+    let backupCapacityLabel: UILabel = {
         let label = UILabel()
-        
+        label.text = "backup Capacity"
+        label.textColor = .white
+        label.font = UIFont.systemFont(ofSize: 16, weight: .light)
         return label
     }()
 
-    let backupImageView: UIImageView = {
-       let imageView = UIImageView()
+    let backupUploadButton: UIButton = {
+        
+        let imageView = UIButton()
+        let buttonConfigure = UIImage.SymbolConfiguration(pointSize: 40)
+//        imageView.layer.borderWidth = 1.0
+//        imageView.layer.borderColor = UIColor.lightGray.cgColor
         imageView.tintColor = .lightGray
-        imageView.image = UIImage(systemName: "doc.badge.gearshape.fill")
+        imageView.setImage(UIImage(systemName: "arrow.up.doc"), for: .normal)
         imageView.backgroundColor = .clear
+        imageView.setPreferredSymbolConfiguration(buttonConfigure, forImageIn: .normal)
+        
         return imageView
     }()
-    
-    let capacityLabel: UILabel = {
-        let label = UILabel()
         
-        return label
-    }()
-    
     override func configureCell() {
-        [backuptitleLabel, backupDateLabel, backupImageView, capacityLabel].forEach {
-            self.addSubview($0)
+        [backuptitleLabel, backupCapacityLabel, backupUploadButton].forEach {
+            self.contentView.addSubview($0)
         }
     }
     
     override func setLayoutConstraints() {
-        backupImageView.snp.makeConstraints { make in
+        backupUploadButton.snp.makeConstraints { make in
             make.centerY.equalTo(self)
             make.leading.equalTo(self).inset(12)
-            make.width.height.equalTo(self.snp.height).multipliedBy(0.6)
-        }
-        
-        capacityLabel.snp.makeConstraints { make in
-            make.top.equalTo(backupImageView.snp.bottom).offset(4)
-            make.leading.equalTo(backupImageView.snp.leading)
-            make.height.equalTo(12)
+            make.width.equalTo(backupUploadButton.snp.height)
+            make.top.bottom.equalTo(self).inset(20)
         }
         
         backuptitleLabel.snp.makeConstraints { make in
-            make.top.equalTo(self).offset(12)
-            make.leading.equalTo(backupImageView.snp.trailing).offset(20)
+            make.top.equalTo(backupUploadButton.snp.top)
+            make.leading.equalTo(backupUploadButton.snp.trailing).offset(28)
             make.trailing.equalTo(self.safeAreaLayoutGuide).inset(20)
             make.height.equalTo(20)
             
         }
         
-        backupDateLabel.snp.makeConstraints { make in
-            make.top.equalTo(backuptitleLabel.snp.bottom).offset(12)
-            make.leading.equalTo(backupImageView.snp.trailing).offset(20)
+        backupCapacityLabel.snp.makeConstraints { make in
+            make.top.equalTo(backuptitleLabel.snp.bottom).offset(8)
+            make.leading.equalTo(backupUploadButton.snp.trailing).offset(28)
             make.trailing.equalTo(self.safeAreaLayoutGuide).inset(20)
-            make.height.equalTo(12)
+            make.height.equalTo(20)
         }
     }
     

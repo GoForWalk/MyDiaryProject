@@ -43,6 +43,7 @@ class ImagePickViewController: BaseViewController {
         imageViewVC.collectionView.register(ImagePickCollectionViewCell.self, forCellWithReuseIdentifier: ImagePickCollectionViewCell.identifier)
         
         imageViewVC.searchBar.delegate = self
+        setNav()
     }
 
 }
@@ -87,7 +88,6 @@ extension ImagePickViewController: UICollectionViewDelegate, UICollectionViewDat
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print(#function)
-        let sendingData: [String: String] = ["imageURL": dataList[indexPath.item].mediumImageURL]
         
         selectIndexPath = indexPath
         
@@ -96,7 +96,6 @@ extension ImagePickViewController: UICollectionViewDelegate, UICollectionViewDat
         selectImage = image
         
         collectionView.reloadData()
-//        presentAlert(data: sendingData, image: image)
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
@@ -134,7 +133,21 @@ extension ImagePickViewController: UICollectionViewDataSourcePrefetching {
 
 extension ImagePickViewController {
     
-    func presentAlert(data: Dictionary<String, String>, image: UIImage) {
+    func setNav() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            image: UIImage(systemName: "plus"),
+            style: .plain,
+            target: self,
+            action: #selector(plusBarButtonTapped(_:))
+        )
+    }
+    
+    @objc func plusBarButtonTapped(_ sender: UIBarButtonItem) {
+        guard let selectImage = selectImage else { return }
+        presentAlert(image: selectImage)
+    }
+    
+    func presentAlert(image: UIImage) {
         
         let alert = UIAlertController(title: "사진을 선택하시겠습니까?", message: "", preferredStyle: .alert)
         
