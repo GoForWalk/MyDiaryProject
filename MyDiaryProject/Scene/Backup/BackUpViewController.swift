@@ -10,7 +10,7 @@ import Zip
 import RealmSwift
 import JGProgressHUD
 
-class BackUpViewController: BaseViewController {
+final class BackUpViewController: BaseViewController {
     
     let backupView = BackUpViewVC()
     
@@ -164,6 +164,7 @@ extension BackUpViewController: UIDocumentPickerDelegate {
                 }, fileOutputHandler: { unzippedFile in
                     print("unzippedFile: \(unzippedFile)")
                     print("복구 완료")
+                    self.resetViewController()
                 })
                 
             } catch {
@@ -214,7 +215,6 @@ extension BackUpViewController: UIDocumentPickerDelegate {
         sceneDelegate?.window?.rootViewController = vc
         sceneDelegate?.window?.makeKeyAndVisible()
     }
-    
 }
 
 // MARK: UITableViewDelegate, UITableViewDataSource

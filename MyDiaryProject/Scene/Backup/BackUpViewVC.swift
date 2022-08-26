@@ -7,7 +7,7 @@
 
 import UIKit
 
-class BackUpViewVC: BaseViewVC {
+final class BackUpViewVC: BaseViewVC {
     
     let backUpButton: SquareButton = {
         let button = SquareButton()

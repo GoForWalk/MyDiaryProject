@@ -8,7 +8,7 @@
 import UIKit
 import SwiftUI
 
-class BackUpTableViewCell: BaseTableViewCell {
+final class BackUpTableViewCell: BaseTableViewCell {
     
     let backuptitleLabel: UILabel = {
         let label = UILabel()

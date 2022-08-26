@@ -6,16 +6,24 @@
 //
 
 import UIKit
+import RealmSwift
 
 class TabbarController: UITabBarController {
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupTabbarItem()
         setupTabBarLayout()
-        fetchDocumentZipFile()
         photoFolderManager()
+        
+        do {
+           let _ = try Realm()
+        } catch let error as NSError{
+            print(error)
+        }
     }
     
     private func setupTabBarLayout() {

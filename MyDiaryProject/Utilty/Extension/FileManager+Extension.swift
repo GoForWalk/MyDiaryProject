@@ -44,6 +44,7 @@ extension UIViewController {
 
         do {
             try FileManager.default.removeItem(at: photoFileURL)
+            print("이미지 삭제 완료")
         } catch let error as NSError {
             print(error)
         }
