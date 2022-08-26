@@ -10,20 +10,24 @@ import Alamofire
 import RealmSwift
 import FSCalendar
 
-class HomeViewController: BaseViewController {
+final class HomeViewController: BaseViewController {
     
     // MARK: Properties
     let repository: UserDiaryRepositoryType = UserDiaryRepository()
+    var isCalenderTapped = false
+    var calenderDate = Date()
     
-    lazy var calender: FSCalendar = {
+    private lazy var calender: FSCalendar = {
         let view = FSCalendar()
         view.delegate = self
         view.dataSource = self
+        view.allowsMultipleSelection = false
+        view.swipeToChooseGesture.isEnabled = false
         view.backgroundColor = .white
         return view
     }()
     
-    lazy var tableView: UITableView = {
+    private lazy var tableView: UITableView = {
         let view = UITableView()
         
         view.backgroundColor = .gray
@@ -33,6 +37,7 @@ class HomeViewController: BaseViewController {
     var tasks: Results<UserDiary>! {
         didSet {
             tableView.reloadData()
+//            calender.reloadData() // 문제를 일으킨 코드
             print("Tasks Changed!", tasks.description)
         }
     }
@@ -69,6 +74,7 @@ class HomeViewController: BaseViewController {
         
         // Realm 데이터를 정렬해서 task에 담기
         fetchRealm()
+        calender.reloadData()
     }
     
     func fetchRealm() {
@@ -83,22 +89,21 @@ extension HomeViewController {
         print(#function)
         navigationItem.leftBarButtonItems = [
             UIBarButtonItem(title: "정렬", style: .plain, target: self, action: #selector(sortData)),
-            UIBarButtonItem(title: "필터", style: .plain, target: self, action: #selector(filterData))
+            UIBarButtonItem(title: "즐겨찾기", style: .plain, target: self, action: #selector(favoriteData))
         ]
         
 //        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(transitionView))
     }
     
     @objc func sortData() {
+        isCalenderTapped = false
         tasks = repository.fetchSortData("registedDate", ascending: true)
     }
     
     // 쿼리문 사용
     // realm filter query, NSPredicate
-    @objc func filterData() {
-        
-        tasks = repository.fetchFilterData() // [c] : 대소문자 상관없이 색인
-//            .filter("diaryTitle = '오늘의 일기'") // 해당 스트링 값으로 색인하는 방법 (정확하게 맞는 값만 출력한다.)
+    @objc func favoriteData() {
+        tasks = repository.fetchFavoriteItems()
     }
     
 //    @objc func transitionView() {
@@ -144,20 +149,16 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             let currentItem = self.tasks[indexPath.row]
 
             self.repository.updateFavorite(item: currentItem)
-            self.fetchRealm()
+            self.selectFetchData()
         }
         
-        let example = UIContextualAction(style: .normal, title: "예시") { action, view, completionHandler in
-            
-            print("example Button Clicked")
-        }
         
         // realm 데이터 기준으로 다른 이미지 설정
         let image = tasks[indexPath.row].favorite ? "star.fill" : "star"
         
         favorite.image = UIImage(systemName: image)
-        favorite.backgroundColor = .systemPink
-        return UISwipeActionsConfiguration(actions: [favorite, example])
+        favorite.backgroundColor = .systemYellow
+        return UISwipeActionsConfiguration(actions: [favorite])
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -167,14 +168,25 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             guard let self = self else { return }
             // TODO: 순서 정확하게 이해하기 (사진을 먼저 삭제해야하는 이유??)
             self.removeImageFromDocuement(fileName: "\(self.tasks[indexPath.row].uuID)")
+            
             self.repository.deleteItem(item: self.tasks[indexPath.row]) {
-                self.fetchRealm()
+                self.calender.reloadData()
+                self.selectFetchData()
             }
         }
         return UISwipeActionsConfiguration(actions: [delete])
  
     }
     
+    
+    func selectFetchData() {
+        switch isCalenderTapped {
+        case true:
+            self.tasks = repository.fetchFilterByDate(date: calenderDate)
+        case false:
+            self.fetchRealm()
+        }
+    }
     
 }
 

@@ -8,7 +8,7 @@
 import UIKit
 import RealmSwift
 
-class TabbarController: UITabBarController {
+final class TabbarController: UITabBarController {
     
     
     

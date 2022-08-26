@@ -20,7 +20,7 @@ final class MainViewController: KeyboardViewController {
 
     let mainView = MainViewVC()
 
-    let localRealm = try! Realm()
+    let repository: UserDiaryRepositoryType = UserDiaryRepository()
     
     var datepicker: UIDatePicker = {
         let datePicker = UIDatePicker()
@@ -37,7 +37,7 @@ final class MainViewController: KeyboardViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("Realm is located at:", localRealm.configuration.fileURL!)
+        print("Realm is located at:", repository.getRealmURL())
         
         addNotificationObserver()
 
@@ -66,11 +66,11 @@ final class MainViewController: KeyboardViewController {
         mainView.dateTextField.text = formatter.string(from: currentDate)
     }
     
-    func addNotificationObserver() {
+    private func addNotificationObserver() {
         NotificationCenter.default.addObserver(self, selector: #selector(getPhoto(_:)), name: Notification.Name.imagePick, object: nil)
     }
     
-    func removeNotificationObserver() {
+    private func removeNotificationObserver() {
         NotificationCenter.default.removeObserver(self, name: Notification.Name.imagePick, object: nil)
     }
         
@@ -97,7 +97,7 @@ final class MainViewController: KeyboardViewController {
 extension MainViewController {
     
     // Realm Create Sample
-    @objc func saveData(_ sender: UIButton) {
+    @objc private func saveData(_ sender: UIButton) {
         self.mainView.endEditing(true)
 
         guard let title = mainView.titleTextField.text, !title.isEmpty else { return }
@@ -105,20 +105,12 @@ extension MainViewController {
         let date = currentDate
         
         let task = UserDiary(diaryTitle: title , diaryContent: mainView.textView.text, diaryDate: date, registedDate: Date(), imageURL: nil)
-        do {
-            try localRealm.write{
-                print(task)
-                localRealm.add(task) // Create
-                print("Realm add Done")
-            }
-        } catch let error as NSError {
-            print(error)
-        }
+        
+        repository.addItem(item: task)
         
         if let image = mainView.mainImageView.image {
             saveImageToDocument(fileName: "\(task.uuID)", image: image)
         }
-        
         
         mainView.titleTextField.text = ""
         mainView.mainImageView.image = nil
@@ -126,13 +118,13 @@ extension MainViewController {
     }
     
     
-    @objc func endEditingKeyboard(_ sender: UITapGestureRecognizer) {
+    @objc private func endEditingKeyboard(_ sender: UITapGestureRecognizer) {
         print(#function)
         mainView.endEditing(true)
     }
     
     
-    @objc func resignKeyboard(_ sender: Any?) {
+    @objc private func resignKeyboard(_ sender: Any?) {
         
         if let textView = sender as? UITextView {
             textView.resignFirstResponder()
@@ -146,15 +138,15 @@ extension MainViewController {
         
     }
 
-    @objc func dateTextFieldTapped(_ sender: UITextField) {
+    @objc private func dateTextFieldTapped(_ sender: UITextField) {
         removeNotificationObserver()
     }
     
-    @objc func dateTextFieldEndEdited(_ sender: UITextField) {
+    @objc private func dateTextFieldEndEdited(_ sender: UITextField) {
         addNotificationObserver()
     }
     
-    @objc func getPhoto(_ notification: NSNotification) {
+    @objc private func getPhoto(_ notification: NSNotification) {
         print(#function)
         guard let strURL = notification.userInfo?["imageURL"] as? String else { return }
         
@@ -193,7 +185,7 @@ extension MainViewController: UITextFieldDelegate {
 // MARK: 사진 추가 방법 분기
 extension MainViewController {
     
-    @objc func presentAlertSheet(_ sender: UIButton) {
+    @objc private func presentAlertSheet(_ sender: UIButton) {
         
         let alertSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
@@ -215,18 +207,16 @@ extension MainViewController {
         
         present(alertSheet, animated: true)
     }
-    
-    
-    func pushImagePickView() {
+
+    private func pushImagePickView() {
         let vc = ImagePickViewController()
         vc.delegate = self // Delegate 적용
         
         presentVC(vc, transitionType: .push)
         view.endEditing(true)
     }
-
     
-    func pushPHPickerView() {
+    private func pushPHPickerView() {
         present(setPHPickerViewController(), animated: true)
         view.endEditing(true)
     }
@@ -235,7 +225,7 @@ extension MainViewController {
 // MARK: PHPickerViewController
 extension MainViewController: PHPickerViewControllerDelegate {
     
-    func setPHPickerViewController() -> PHPickerViewController {
+    private func setPHPickerViewController() -> PHPickerViewController {
         var configuration = PHPickerConfiguration()
         
         configuration.selectionLimit = 1
@@ -274,7 +264,6 @@ extension MainViewController: SelectImageDelegate {
         print(#function)
     }
 }
-
 
 // TODO: Error 처리로 데이터 삽입 조건 컨트롤
 enum MyDiaryError: Error {

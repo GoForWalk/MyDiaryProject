@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class ImagePickCollectionViewCell: BaseCollectionViewCell {
+final class ImagePickCollectionViewCell: BaseCollectionViewCell {
     
     lazy var imageView: UIImageView = {
        let imageView = UIImageView()

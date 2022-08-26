@@ -8,7 +8,7 @@
 import UIKit
 import Kingfisher
 
-class ImagePickViewController: BaseViewController {
+final class ImagePickViewController: BaseViewController {
 
     let imageViewVC = ImagePickViewVC()
     let apiManager = UnsplashAPIManger.share

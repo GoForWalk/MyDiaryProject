@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class HomeTableViewCell: BaseTableViewCell {
+final class HomeTableViewCell: BaseTableViewCell {
     
     let diaryImageView: UIImageView = {
         let imageView = UIImageView()
