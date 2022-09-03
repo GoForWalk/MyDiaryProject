@@ -15,7 +15,7 @@ protocol UserDiaryRepositoryType {
     func fetchSortData(_ sortKey: String, ascending: Bool) -> Results<UserDiary>
     func fetchFilterData() -> Results<UserDiary>
     func updateFavorite(item: UserDiary)
-    func deleteItem(item: UserDiary, completionHandler: @escaping () -> ())
+    func deleteItem(item: UserDiary, onSuccess: @escaping () -> ())
     func fetchFilterByDate(date: Date) -> Results<UserDiary>
     func addItem(item: UserDiary)
     func getRealmURL() -> String
@@ -60,12 +60,12 @@ struct UserDiaryRepository: UserDiaryRepositoryType {
         
     }
     
-    func deleteItem(item: UserDiary, completionHandler: @escaping () -> ()) {
+    func deleteItem(item: UserDiary, onSuccess: @escaping () -> ()) {
         do {
             try localRealm.write {
                 localRealm.delete(item)
             }
-            completionHandler()
+            onSuccess()
         } catch let error as NSError{
             print(error)
         }

@@ -47,7 +47,7 @@ class UnsplashAPIManger {
             
         }
         
-    }
+    }//:fetchImages
     
     
 }

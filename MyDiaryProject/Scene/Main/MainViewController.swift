@@ -39,7 +39,7 @@ final class MainViewController: KeyboardViewController {
         super.viewDidLoad()
         print("Realm is located at:", repository.getRealmURL())
         
-        addNotificationObserver()
+//        addNotificationObserver()
 
     }
     
@@ -49,7 +49,7 @@ final class MainViewController: KeyboardViewController {
     }
     
     deinit {
-        removeNotificationObserver()
+//        removeNotificationObserver()
     }
     
     override func configure() {
@@ -61,18 +61,19 @@ final class MainViewController: KeyboardViewController {
         mainView.dateTextField.inputView = datepicker
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(endEditingKeyboard(_:)))
-        mainView.addGestureRecognizer(tap)
-        mainView.mainImageView.addGestureRecognizer(tap)
+        
+        view.addGestureRecognizer(tap)
+        
         mainView.dateTextField.text = formatter.string(from: currentDate)
     }
     
-    private func addNotificationObserver() {
-        NotificationCenter.default.addObserver(self, selector: #selector(getPhoto(_:)), name: Notification.Name.imagePick, object: nil)
-    }
-    
-    private func removeNotificationObserver() {
-        NotificationCenter.default.removeObserver(self, name: Notification.Name.imagePick, object: nil)
-    }
+//    private func addNotificationObserver() {
+//        NotificationCenter.default.addObserver(self, selector: #selector(getPhoto(_:)), name: Notification.Name.imagePick, object: nil)
+//    }
+//
+//    private func removeNotificationObserver() {
+//        NotificationCenter.default.removeObserver(self, name: Notification.Name.imagePick, object: nil)
+//    }
         
     override func setDateFormatter() -> String {
         print(#function)
@@ -138,13 +139,13 @@ extension MainViewController {
         
     }
 
-    @objc private func dateTextFieldTapped(_ sender: UITextField) {
-        removeNotificationObserver()
-    }
-    
-    @objc private func dateTextFieldEndEdited(_ sender: UITextField) {
-        addNotificationObserver()
-    }
+//    @objc private func dateTextFieldTapped(_ sender: UITextField) {
+//        removeNotificationObserver()
+//    }
+//
+//    @objc private func dateTextFieldEndEdited(_ sender: UITextField) {
+//        addNotificationObserver()
+//    }
     
     @objc private func getPhoto(_ notification: NSNotification) {
         print(#function)

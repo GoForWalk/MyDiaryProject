@@ -66,9 +66,11 @@ class MainViewVC: BaseViewVC {
     }()
     
     override func configure() {
+        super.configure()
         [mainImageView, imageAddButton, titleTextField, dateTextField, textView, sampleButton].forEach {
             addSubview($0)
         }
+        self.isUserInteractionEnabled = true
     }
     
     override func layoutConstraint() {

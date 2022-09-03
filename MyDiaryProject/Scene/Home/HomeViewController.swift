@@ -165,13 +165,13 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         // 역순으로 추가
         let delete = UIContextualAction(style: .destructive, title: "Delete") { [weak self] action, view, completionHandler in
                         
-            guard let self = self else { return }
+            guard let strongSelf = self else { return }
             // TODO: 순서 정확하게 이해하기 (사진을 먼저 삭제해야하는 이유??)
-            self.removeImageFromDocuement(fileName: "\(self.tasks[indexPath.row].uuID)")
+            strongSelf.removeImageFromDocuement(fileName: "\(strongSelf.tasks[indexPath.row].uuID)")
             
-            self.repository.deleteItem(item: self.tasks[indexPath.row]) {
-                self.calender.reloadData()
-                self.selectFetchData()
+            strongSelf.repository.deleteItem(item: strongSelf.tasks[indexPath.row]) {
+                self?.calender.reloadData()
+                self?.selectFetchData()
             }
         }
         return UISwipeActionsConfiguration(actions: [delete])
